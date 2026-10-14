@@ -1,0 +1,10 @@
+{
+  "name": "roll-room",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Roll Room: real-time multiplayer Ludo (Node.js + WebSocket)",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "test": "node --test test/rules.test.js test/simulate.test.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "ws": "^8.18.0" }
+}

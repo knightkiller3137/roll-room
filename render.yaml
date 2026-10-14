@@ -1,0 +1,10 @@
+# Render Blueprint: New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: roll-room
+    runtime: docker
+    plan: free            # free instances sleep when idle and drop rooms; use a paid plan for always-on
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
