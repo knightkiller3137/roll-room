@@ -12,9 +12,9 @@ test('needs a 6 to leave base', () => {
 });
 
 test('exact roll needed to finish', () => {
-  const t = [tok('green', 55)];
-  assert.equal(G.legalMoves(t, 'green', 3).length, 0);
-  assert.equal(G.legalMoves(t, 'green', 2).length, 1);
+  const t = [tok('green', 53)];
+  assert.equal(G.legalMoves(t, 'green', 4).length, 0);
+  assert.equal(G.legalMoves(t, 'green', 3).length, 1);
 });
 
 test('captures on a normal cell', () => {
@@ -45,7 +45,12 @@ test('blockade on own start stops entering', () => {
   assert.equal(G.legalMoves(t, 'green', 6).length, 0);
 });
 
+test('classic path: 51 track cells then a private lane', () => {
+  assert.equal(G.FINISH, 56);
+  assert.equal(G.LAST_TRACK_STEP, 50);
+});
+
 test('home lane is private', () => {
-  const g = tok('green', 50), y = tok('yellow', 39), y2 = tok('yellow', 39);
+  const g = tok('green', 48), y = tok('yellow', 39), y2 = tok('yellow', 39);
   assert.equal(G.legalMoves([g, y, y2], 'green', 5).length, 1);
 });

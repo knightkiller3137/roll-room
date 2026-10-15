@@ -5,16 +5,17 @@
   Board model (matches the client):
     - 52 shared track cells, indexed 0..51 clockwise.
     - Each color enters the track at its own start index.
-    - Token step: -1 = in base, 0..51 = steps along the track from that color's
-      start, 52..56 = private home lane, 57 = finished.
+    - Token step: -1 = in base, 0..50 = steps along the track from that color's
+      start (the last track cell is the tip of its own arm), 51..55 = private
+      home lane, 56 = finished (the center). Classic Ludo: 56 moves from start to home.
 */
 
 const COLORS = ['green', 'yellow', 'blue', 'red'];
 const START = { green: 0, yellow: 13, blue: 26, red: 39 };
 const SAFE = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
 const TRACK_LEN = 52;
-const LAST_TRACK_STEP = 51;
-const FINISH = 57;
+const LAST_TRACK_STEP = 50;
+const FINISH = 56;
 
 const trackIndex = (color, step) => (START[color] + step) % TRACK_LEN;
 const onTrack = (t) => t.step >= 0 && t.step <= LAST_TRACK_STEP;

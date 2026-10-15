@@ -47,10 +47,15 @@ After deploy, open the URL, create a room, and share the invite link.
 | `ROOM_TTL_MS` | 10800000 | Empty rooms are deleted after this idle time |
 | `RATE_LIMIT_PER_SEC` | 10 | Per-connection message rate |
 
+## Look and feel
+Classic cross-shaped Ludo board with the four classic colors (red top-left, green top-right, yellow bottom-right, blue bottom-left),
+heart-shaped tokens, heart-marked safe squares and a love theme throughout. Each token travels the classic 56 moves:
+51 track squares, a private 5-square home column, then the center.
+
 ## Behaviour notes
 - 2 to 4 players; first two seats are opposite colors. Owner starts once all other players are ready.
 - Rules: 6 to leave base, 6 rolls again, three 6s end the turn, captures send tokens to base, same-color pairs are blockades,
-  safe cells (start squares and stars) cannot be captured on, exact roll to finish. First player with four tokens home wins.
+  safe cells (start squares and heart-marked cells) cannot be captured on, exact roll to finish. First player with four tokens home wins.
 - Gentle start (optional room setting): all four tokens in base after three turns means the next roll is a shown, guaranteed 6.
 - A disconnected player is auto-played by the server and can resume by reopening the link. Leaving mid-game forfeits.
 - Not included: accounts, persistence across restarts, horizontal scaling (needs a shared store plus sticky routing).

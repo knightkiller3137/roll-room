@@ -44,8 +44,8 @@ function check(m) {
   const colorOf = Object.fromEntries(m.players.map((p) => [p.id, p.color]));
   const cells = {};
   for (const t of m.game.tokens) {
-    assert.ok(t.step >= -1 && t.step <= 57, 'step range');
-    if (t.step >= 0 && t.step <= 51) {
+    assert.ok(t.step >= -1 && t.step <= 56, 'step range');
+    if (t.step >= 0 && t.step <= 50) {
       const idx = G.trackIndex(colorOf[t.playerId], t.step);
       (cells[idx] = cells[idx] || new Set()).add(colorOf[t.playerId]);
     }
@@ -73,7 +73,7 @@ test('full 4-player gentle match with bots reaches a winner', { timeout: 120000 
   const final = await waitFor(() => cs[0].state && cs[0].state.room.phase === 'finished' && cs[0].state, 100000);
   const w = final.game.winnerId;
   assert.ok(w);
-  assert.equal(final.game.tokens.filter((t) => t.playerId === w && t.step === 57).length, 4);
+  assert.equal(final.game.tokens.filter((t) => t.playerId === w && t.step === G.FINISH).length, 4);
   cs.forEach((c) => c.ws.close());
   await app.close();
 });

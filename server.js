@@ -226,12 +226,12 @@ function doMove(room, p, tokenId) {
   const was = token.step;
   const captured = G.applyMove(g.tokens, token, value);
 
-  let text = was === -1 ? `${p.name} brought a token out.` : token.step === G.FINISH ? `${p.name} got a token home!` : `${p.name} moved ${value}.`;
-  if (token.step === G.FINISH) addSystem(room, `${p.name} got a token home.`);
+  let text = was === -1 ? `💘 ${p.name} brought a heart out.` : token.step === G.FINISH ? `💖 ${p.name} got a heart home!` : `${p.name} moved ${value}.`;
+  if (token.step === G.FINISH) addSystem(room, `💖 ${p.name} got a heart home.`);
   for (const owner of new Set(captured.map((t) => t.playerId))) {
     const victim = room.players.find((x) => x.id === owner);
     const n = captured.filter((t) => t.playerId === owner).length;
-    const line = `${p.name} captured ${victim ? victim.name + '’s' : 'a'} token${n > 1 ? 's' : ''}!`;
+    const line = `💔 ${p.name} sent ${victim ? victim.name + '’s' : 'a'} heart${n > 1 ? 's' : ''} back to base!`;
     text += ' ' + line;
     addSystem(room, line);
   }
@@ -242,8 +242,8 @@ function doMove(room, p, tokenId) {
     g.winnerId = p.id;
     g.diceValue = null;
     g.legalMoves = [];
-    g.lastRollText = `${p.name} wins!`;
-    addSystem(room, `${p.name} wins the match!`);
+    g.lastRollText = `💕 ${p.name} wins!`;
+    addSystem(room, `💕 ${p.name} wins the match!`);
     return commit(room), true;
   }
   endTurn(room, value === 6);
@@ -309,7 +309,7 @@ function handle(ws, msg) {
       room.ownerId = player.id;
       bind(ws, room, player);
       wsSend(ws, { type: 'room_joined', roomCode: code, playerId: player.id });
-      addSystem(room, `${player.name} created the room.`);
+      addSystem(room, `💌 ${player.name} created the room.`);
       return commit(room);
     }
 
